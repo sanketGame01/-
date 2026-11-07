@@ -1,0 +1,11 @@
+#Ant properties
+#Wed Mar 04 09:38:21 UTC 2026
+builddate=20260304 0937
+description=aidescription
+group.id=de.hybris.platform
+module.name=platform-module
+name=aidescription
+releasedate=20260304 0937
+vendor=hybris
+version=2211-jdk21.9
+version.api=2211-jdk21
