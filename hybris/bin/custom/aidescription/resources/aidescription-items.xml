@@ -2,39 +2,35 @@
 <!--
  Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
 -->
-<!--
-	ATTENTION: This is just an example file. You have to edit it according to your needs.
--->
-
-<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-			xsi:noNamespaceSchemaLocation="items.xsd">
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
 
 	<itemtypes>
-<!--
-		<itemtype generate="true"
-		   code="MyProduct"
-		   jaloclass="com.knack.ai.jalo.MyProduct"
-		   extends="Product"
-		   autocreate="true"
-	   >
+		<itemtype generate="true" code="GenerateDescriptionsCronJob" extends="CronJob" autocreate="true">
+			<description>Bulk-generates product descriptions with an LLM on the Staged catalog version</description>
 			<attributes>
-				<attribute qualifier="myExampleInitialStringField" type="java.lang.String">
-					<description>My Example Initial String Value</description>
-					<modifiers initial="true"/>
+				<attribute qualifier="catalogId" type="java.lang.String">
+					<description>Product catalog id, e.g. electronicsProductCatalog</description>
+					<modifiers optional="false"/>
+					<defaultvalue>"electronicsProductCatalog"</defaultvalue>
 					<persistence type="property"/>
 				</attribute>
-
-				<attribute qualifier="myExampleBooleanField" type="java.lang.Boolean">
-					<description>Example Initial Boolean Field</description>
-               <persistence type="property"/>
-				</attribute>
-
-				<attribute qualifier="media" type="Media">
+				<attribute qualifier="overwrite" type="java.lang.Boolean">
+					<description>Replace existing descriptions</description>
+					<defaultvalue>Boolean.FALSE</defaultvalue>
 					<persistence type="property"/>
 				</attribute>
-
+				<attribute qualifier="batchSize" type="java.lang.Integer">
+					<description>Products loaded per page</description>
+					<defaultvalue>Integer.valueOf(20)</defaultvalue>
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="maxProducts" type="java.lang.Integer">
+					<description>Maximum number of products sent to the LLM per run (0 = no limit)</description>
+					<defaultvalue>Integer.valueOf(20)</defaultvalue>
+					<persistence type="property"/>
+				</attribute>
 			</attributes>
 		</itemtype>
--->
 	</itemtypes>
 </items>
+

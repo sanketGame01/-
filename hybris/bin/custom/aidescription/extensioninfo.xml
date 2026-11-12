@@ -22,7 +22,7 @@
 
       
         
-        <coremodule generated="true" manager="com.knack.ai.jalo.AidescriptionManager" packageroot="com.knack.ai"/>
+        <requires-extension name="processing"/><coremodule generated="true" manager="com.knack.ai.jalo.AidescriptionManager" packageroot="com.knack.ai"/>
                       
         
         <webmodule jspcompile="false" webroot="/aidescription"/>

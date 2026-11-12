@@ -82,5 +82,35 @@
         <property name="mediaService" ref="mediaService"/>
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
-			
+
+    <!-- AI description: LLM client -->
+    <alias name="ollamaLlmClient" alias="llmClient"/>
+    <bean id="ollamaLlmClient" class="com.knack.ai.llm.impl.OllamaLlmClient">
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+
+    <!-- AI description: prompt builder -->
+    <alias name="defaultProductPromptBuilder" alias="productPromptBuilder"/>
+    <bean id="defaultProductPromptBuilder" class="com.knack.ai.prompt.impl.DefaultProductPromptBuilder">
+        <property name="classificationService" ref="classificationService"/>
+    </bean>
+
+    <!-- AI description: generation service -->
+    <alias name="defaultProductDescriptionGenerationService" alias="productDescriptionGenerationService"/>
+    <bean id="defaultProductDescriptionGenerationService"
+          class="com.knack.ai.service.impl.DefaultProductDescriptionGenerationService">
+        <property name="modelService" ref="modelService"/>
+        <property name="productPromptBuilder" ref="productPromptBuilder"/>
+        <property name="llmClient" ref="llmClient"/>
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+
+    <!-- AI description: bulk generation job -->
+    <bean id="generateDescriptionsJob" class="com.knack.ai.job.GenerateDescriptionsJob" parent="abstractJobPerformable">
+        <property name="productDescriptionGenerationService" ref="productDescriptionGenerationService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+
 </beans>
+
